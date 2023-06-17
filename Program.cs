@@ -1,29 +1,32 @@
-using System;
-using System.Collections.Generic;
-
-class Program
 {
     static void Main()
     {
-        int[] arr = { 5, 3, 9, 1, 7, 2, 6, 4, 8 };
+        int[] arr = { 1, 2, 3, 4, 2, 3, 5, 6, 4, 7, 8, 1, 9, 1 };
+        Dictionary<int, int> frequency = CountElementFrequency(arr);
 
-        int max = arr[0];
-        int min = arr[0];
-
-        for (int i = 1; i < arr.Length; i++)
+        Console.WriteLine("Element Frequency:");
+        foreach (KeyValuePair<int, int> pair in frequency)
         {
-            if (arr[i] > max)
-            {
-                max = arr[i];
-            }
+            Console.WriteLine($"Element: {pair.Key} - Frequency: {pair.Value}");
+        }
+    }
 
-            if (arr[i] < min)
+    static Dictionary<int, int> CountElementFrequency(int[] arr)
+    {
+        Dictionary<int, int> frequency = new Dictionary<int, int>();
+
+        foreach (int num in arr)
+        {
+            if (frequency.ContainsKey(num))
             {
-                min = arr[i];
+                frequency[num]++;
+            }
+            else
+            {
+                frequency[num] = 1;
             }
         }
 
-        Console.WriteLine("Maximum element: " + max);
-        Console.WriteLine("Minimum element: " + min);
+        return frequency;
     }
 }
