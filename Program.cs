@@ -5,32 +5,25 @@ class Program
 {
     static void Main()
     {
-        int[] arr = { 1, 2, 3, 4, 2, 3, 5, 6, 4, 7, 8, 1, 9, 1 };
-        Dictionary<int, int> frequency = CountElementFrequency(arr);
+        int[] arr = { 5, 3, 9, 1, 7, 2, 6, 4, 8 };
 
-        Console.WriteLine("Element Frequency:");
-        foreach (KeyValuePair<int, int> pair in frequency)
+        int max = arr[0];
+        int min = arr[0];
+
+        for (int i = 1; i < arr.Length; i++)
         {
-            Console.WriteLine($"Element: {pair.Key} - Frequency: {pair.Value}");
-        }
-    }
-
-    static Dictionary<int, int> CountElementFrequency(int[] arr)
-    {
-        Dictionary<int, int> frequency = new Dictionary<int, int>();
-
-        foreach (int num in arr)
-        {
-            if (frequency.ContainsKey(num))
+            if (arr[i] > max)
             {
-                frequency[num]++;
+                max = arr[i];
             }
-            else
+
+            if (arr[i] < min)
             {
-                frequency[num] = 1;
+                min = arr[i];
             }
         }
 
-        return frequency;
+        Console.WriteLine("Maximum element: " + max);
+        Console.WriteLine("Minimum element: " + min);
     }
 }
