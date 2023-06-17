@@ -6,28 +6,31 @@ class Program
     static void Main()
     {
         int[] arr = { 1, 2, 3, 4, 2, 3, 5, 6, 4, 7, 8, 1, 9, 1 };
-        List<int> uniqueElements = GetUniqueElements(arr);
+        Dictionary<int, int> frequency = CountElementFrequency(arr);
 
-        Console.WriteLine("Unique Elements:");
-        foreach (int element in uniqueElements)
+        Console.WriteLine("Element Frequency:");
+        foreach (KeyValuePair<int, int> pair in frequency)
         {
-            Console.WriteLine(element);
+            Console.WriteLine($"Element: {pair.Key} - Frequency: {pair.Value}");
         }
     }
 
-    static List<int> GetUniqueElements(int[] arr)
+    static Dictionary<int, int> CountElementFrequency(int[] arr)
     {
-        List<int> uniqueElements = new List<int>();
-        Dictionary<int, bool> duplicates = new Dictionary<int, bool>();
+        Dictionary<int, int> frequency = new Dictionary<int, int>();
 
         foreach (int num in arr)
         {
-            if (!duplicates.ContainsKey(num))
+            if (frequency.ContainsKey(num))
             {
-                duplicates[num] = true;
-                uniqueElements.Add(num);
+                frequency[num]++;
+            }
+            else
+            {
+                frequency[num] = 1;
             }
         }
-        return uniqueElements;
+
+        return frequency;
     }
 }
