@@ -28,7 +28,6 @@ class Program
                 uniqueElements.Add(num);
             }
         }
-
         return uniqueElements;
     }
 }
